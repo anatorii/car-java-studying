@@ -8,7 +8,6 @@ public class Main
 {
     public static void main(String[] args)
     {
-        JFrame.setDefaultLookAndFeelDecorated(true);
         new JFrameWindow();
     }
 }
@@ -21,35 +20,13 @@ class JFrameWindow extends JFrame
     {
         super("car picture");
 
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-        this.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
-
-        this.addWindowListener(new WindowListener() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                e.getWindow().setVisible(false);
-                System.exit(0);
-            }
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {}
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-
-        this.add(new SnowMan());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setPreferredSize(new Dimension(1500, 900));
 
         this.setLocation(10, 10);
+
+        this.add(new SnowMan());
 
         this.pack();
 
@@ -59,8 +36,7 @@ class JFrameWindow extends JFrame
 
 class SnowMan extends Canvas
 {
-    private static int xo = 0;
-    private static int yo = 0;
+    private static final int xo = 0;
     private Graphics gr;
 
     @Override
@@ -73,9 +49,6 @@ class SnowMan extends Canvas
         this.setBackground(Color.LIGHT_GRAY);
 
         Graphics2D g2 = (Graphics2D) g;
-
-        int x, y, r, a, b;
-        Path2D path;
 
         g2.setStroke(new BasicStroke(8));
 
@@ -141,6 +114,9 @@ class SnowMan extends Canvas
 
         // wheels
         g2.setStroke(new BasicStroke(1));
+
+        int yo = 0;
+        int x, y, r;
 
         x = 522; y = 695; r = 85;
         drawCircle(xo + x, yo + y, r, Color.BLACK, true);
